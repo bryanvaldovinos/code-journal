@@ -6,3 +6,10 @@ var data = {
   editing: null,
   nextEntryId: 1
 };
+
+function local(event) {
+  var entriesJSON = JSON.stringify(data);
+  localStorage.setItem('Data Info:', entriesJSON);
+}
+
+window.addEventListener('beforeunload', local);

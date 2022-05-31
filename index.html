@@ -11,15 +11,55 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
+<body class="body-bgc">
+  <div class="header-bgc">
+    <div class="container">
+      <div class="row">
+        <header class="column-full">
+          <h2 class="font-norm margin-tb">Code Journal</h2>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class="container font-bold">
+    <main>
+      <div data-view="entry-form">
+        <div class="row">
+          <form id="code-form" class="column-full">
+            <div class="row">
+              <div class="column-full">
+                <h1 class="margin-tb">New Entry</h1>
+              </div>
+            </div>
+            <div class="row margin-tb-5">
+              <div class="column-half margin-bottom">
+                <img src="images/placeholder-image-square.jpg" class="width-100">
+              </div>
+              <div class="column-half">
+                <h3 class="margin-top margin-bottom"><label for="title">Title</label></h3>
+                <input required type="text" name="title" id="title" class="width-100 input-style">
+                <h3 class="margin-bottom"><label for="photo">Photo URL</label></h3>
+                <input required type="text" name="piclink" id="photo" class="width-100 input-style">
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full">
+                <h3 class="margin-tb"><label for="notes">Notes</label></h3>
+                <textarea required id="notes" name="notes" class="width-100 input-style" rows="6">
+                </textarea>
+                <button class="save-right font-norm purp-bgc margin-tb">SAVE</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>

@@ -1,0 +1,69 @@
+.font-norm {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+}
+
+.font-bold {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+}
+
+.body-bgc {
+  background-color: rgb(240, 240, 240);
+}
+
+.header-bgc {
+  background-color: rgb(86, 43, 129);
+  color: white;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.object-fit {
+  object-fit: contain;
+}
+
+.input-style {
+  padding: 7px;
+  border-radius: 7px;
+  border-width: 1px;
+}
+
+.save-right {
+  float: right;
+  padding: 4px 20px;
+  background-color: rgb(86, 43, 129);
+  border-radius: 5px;
+  color: white;
+  border-width: 1px;
+  font-size: 1rem;
+}
+
+.margin-tb {
+  margin: 8px 0;
+}
+
+.margin-tb-5 {
+  margin: 5px 0;
+}
+
+.margin-top {
+  margin-top: 0;
+}
+
+.margin-bottom {
+  margin-bottom: 8px;
+}
+
+input[type="text"] {
+  font-size: 1rem;
+  font-weight: thin;
+}
+
+textarea {
+  font-size: 1rem;
+  font-family: sans-serif;
+  font-weight: thin;
+}
