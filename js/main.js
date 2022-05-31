@@ -24,11 +24,5 @@ function submit(event) {
 
 }
 
-function local(event) {
-  var entriesJSON = JSON.stringify(data);
-  localStorage.setItem('Data Info:', entriesJSON);
-}
-
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
-window.addEventListener('beforeunload', local);
