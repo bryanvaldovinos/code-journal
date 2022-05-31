@@ -2,6 +2,10 @@
   display: none !important;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   max-width: 575px;
   margin: 0 auto;
@@ -30,5 +34,9 @@
 
   .column-half {
     width: 50%;
+  }
+
+  .object-fit {
+    object-fit: fill;
   }
 }
