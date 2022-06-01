@@ -3,7 +3,7 @@
 var picInput = document.querySelector('#photo');
 var img = document.querySelector('img');
 var contact = document.querySelector('#code-form');
-var uList = document.querySelector('#ul');
+var uList = document.querySelector('ul');
 
 function subSrc(e) {
   img.setAttribute('src', e.target.value);
@@ -22,7 +22,7 @@ function submit(event) {
   data.nextEntryId++;
   contact.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
-
+  single();
 }
 
 function entryTree(entry) {
@@ -36,6 +36,7 @@ function entryTree(entry) {
 
   var foto = document.createElement('img');
   foto.setAttribute('src', entry.photoURL);
+  foto.setAttribute('class', 'width-100');
   col.appendChild(foto);
 
   var piece = document.createElement('div');
@@ -56,10 +57,13 @@ function entryTree(entry) {
   return lista;
 }
 
+function single(entrada) {
+  uList.prepend(entryTree(data.entries[0]));
+}
+
 function unload(show) {
   for (var i = 0; i < data.entries.length; i++) {
-    var append = entryTree(data.entries[i]);
-    uList.appendChild(append);
+    entryTree(data.entries[i]);
   }
 }
 
