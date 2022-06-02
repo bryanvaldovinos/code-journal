@@ -99,3 +99,10 @@ textarea {
 .margin-top-12 {
   margin-top: 10px;
 }
+
+.a-tag {
+  color: white;
+  text-decoration: none;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+}

@@ -7,6 +7,11 @@ var data = {
   nextEntryId: 1
 };
 
+var previousEntriesJSON = localStorage.getItem('Data Info');
+if (previousEntriesJSON !== null) {
+  data = JSON.parse(previousEntriesJSON);
+}
+
 function local(event) {
   var entriesJSON = JSON.stringify(data);
   localStorage.setItem('Data Info:', entriesJSON);

@@ -4,6 +4,7 @@ var picInput = document.querySelector('#photo');
 var img = document.querySelector('img');
 var contact = document.querySelector('#code-form');
 var uList = document.querySelector('ul');
+var entryPage = document.querySelector('a[href="#entryPage"]');
 
 function subSrc(e) {
   img.setAttribute('src', e.target.value);
@@ -23,6 +24,8 @@ function submit(event) {
   contact.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
   single();
+  data.view = 'entries';
+  swap();
 }
 
 function entryTree(entry) {
@@ -57,16 +60,36 @@ function entryTree(entry) {
   return lista;
 }
 
-function single(entrada) {
+function single() {
   uList.prepend(entryTree(data.entries[0]));
 }
 
-function unload(show) {
+function unload() {
   for (var i = 0; i < data.entries.length; i++) {
-    entryTree(data.entries[i]);
+    uList.append(entryTree(data.entries[i]));
   }
+}
+
+var view = document.querySelector('div[data-view="entry-form"]');
+var viewTwo = document.querySelector('div[data-view="entries"]');
+
+function swap() {
+  event.preventDefault();
+  if (data.view === 'entry-form') {
+    view.className = '';
+    viewTwo.className = 'hidden';
+  } else if (data.view === 'entries') {
+    view.className = 'hidden';
+    viewTwo.className = '';
+  }
+}
+
+function entryFunc(event) {
+  view.className = '';
+  viewTwo.className = 'hidden';
 }
 
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', unload);
+entryPage.addEventListener('click', entryFunc);
