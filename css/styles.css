@@ -8,6 +8,11 @@
   font-weight: 600;
 }
 
+.font-sans {
+  font-family: sans-serif;
+  line-height: 1.5rem;
+}
+
 .body-bgc {
   background-color: rgb(240, 240, 240);
 }
@@ -66,4 +71,38 @@ textarea {
   font-size: 1rem;
   font-family: sans-serif;
   font-weight: thin;
+}
+
+.inline {
+  display: inline;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+.new-btn {
+  float: right;
+  margin-top: 12px;
+  padding: 4px 10px;
+  background-color: rgb(86, 43, 129);
+  border-radius: 5px;
+  color: white;
+  border-width: 1px;
+  font-size: 1rem;
+}
+
+.margin-btm {
+  margin-bottom: 20px;
+}
+
+.margin-top-12 {
+  margin-top: 10px;
+}
+
+.a-tag {
+  color: white;
+  text-decoration: none;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
 }
