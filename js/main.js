@@ -23,9 +23,9 @@ function submit(event) {
   data.nextEntryId++;
   contact.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  single();
+  singleEntry();
   data.view = 'entries';
-  swap();
+  viewSwap();
 }
 
 function entryTree(entry) {
@@ -60,11 +60,11 @@ function entryTree(entry) {
   return lista;
 }
 
-function single() {
+function singleEntry() {
   uList.prepend(entryTree(data.entries[0]));
 }
 
-function unload() {
+function allEntries() {
   for (var i = 0; i < data.entries.length; i++) {
     uList.append(entryTree(data.entries[i]));
   }
@@ -73,7 +73,7 @@ function unload() {
 var view = document.querySelector('div[data-view="entry-form"]');
 var viewTwo = document.querySelector('div[data-view="entries"]');
 
-function swap() {
+function viewSwap() {
   event.preventDefault();
   if (data.view === 'entry-form') {
     view.className = '';
@@ -84,12 +84,12 @@ function swap() {
   }
 }
 
-function entryFunc(event) {
+function backToEntry(event) {
   view.className = '';
   viewTwo.className = 'hidden';
 }
 
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
-window.addEventListener('DOMContentLoaded', unload);
-entryPage.addEventListener('click', entryFunc);
+window.addEventListener('DOMContentLoaded', allEntries);
+entryPage.addEventListener('click', backToEntry);
