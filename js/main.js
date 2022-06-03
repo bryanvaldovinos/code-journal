@@ -11,12 +11,11 @@ function subSrc(e) {
 }
 
 function submit(event) {
-  event.preventDefault();
   var userInput = {
     title: contact.elements.title.value,
     photoURL: contact.elements.piclink.value,
-    notes: contact.elements.notes.value,
-    nextEntryId: data.nextEntryId
+    Notes: contact.elements.notes.value,
+    EntryId: data.nextEntryId
   };
 
   data.entries.unshift(userInput);
@@ -48,12 +47,17 @@ function entryTree(entry) {
 
   var title = document.createElement('h3');
   var titleText = document.createTextNode(entry.title);
-  title.setAttribute('class', 'margin-top margin-bottom');
+  title.setAttribute('class', 'margin-top margin-bottom inline');
   piece.appendChild(title);
   title.appendChild(titleText);
 
+  var pen = document.createElement('i');
+  pen.setAttribute('class', 'fa-solid fa-pen right editTarget');
+  pen.setAttribute('data-entry-id', entry.EntryId);
+  piece.appendChild(pen);
+
   var notas = document.createElement('p');
-  var notaEntry = document.createTextNode(entry.notes);
+  var notaEntry = document.createTextNode(entry.Notes);
   piece.appendChild(notas);
   notas.appendChild(notaEntry);
 
@@ -89,7 +93,39 @@ function backToEntry(event) {
   viewTwo.className = 'hidden';
 }
 
+function TBD(evento) {
+  // console.log(data.editing);
+  // var dirID = evento.target.getAttribute('data-entry-id');
+  // console.log(dirID);
+  if (event.target.matches('.editTarget')) {
+    view.className = '';
+    viewTwo.className = 'hidden';
+
+    // for (var i = 0; i < data.entries.length; i++) {
+    //  if (data.entries[i].EntryId === dirID) {
+    data.editing = 8;
+    // }
+  }
+  // console.log(data);
+  // if (data.editing === null) {
+  // for (var i = 0; i < data.entries.length; i++) {
+  //    if (data.entries[i].EntryId === dirID) {
+  //     data.editing = 8;
+  //      }
+  // }
+}
+// }
+
+// function NA() {
+// if icon clicked
+// if click matches entry id then assign that to data editing
+// var bool = data.entries[0].EntryId.matches('#entry.EntryId');
+// return data.entries[0].EntryId;
+// return bool;
+// }
+
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', allEntries);
 entryPage.addEventListener('click', backToEntry);
+uList.addEventListener('click', TBD);
