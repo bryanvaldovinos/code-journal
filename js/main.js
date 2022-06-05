@@ -1,29 +1,38 @@
 /* global data */
 
-var picInput = document.querySelector('#photo');
 var img = document.querySelector('img');
 var contact = document.querySelector('#code-form');
 var uList = document.querySelector('ul');
-var entryPage = document.querySelector('a[href="#entryPage"]');
+// var entryPage = document.querySelector('a[href="#entryPage"]');
+var entriesPage = document.querySelector('a[href="#entries"]');
+
+var titleInput = document.querySelector('#title');
+var picInput = document.querySelector('#photo');
+var notesInput = document.querySelector('#notes');
 
 function subSrc(e) {
   img.setAttribute('src', e.target.value);
 }
 
 function submit(event) {
-  var userInput = {
-    title: contact.elements.title.value,
-    photoURL: contact.elements.piclink.value,
-    Notes: contact.elements.notes.value,
-    EntryId: data.nextEntryId
-  };
+  if (data.editing === null) {
+    event.preventDefault();
+    var userInput = {
+      title: contact.elements.title.value,
+      photoURL: contact.elements.piclink.value,
+      Notes: contact.elements.notes.value,
+      EntryId: data.nextEntryId
+    };
 
-  data.entries.unshift(userInput);
-  data.nextEntryId++;
-  contact.reset();
+    data.entries.unshift(userInput);
+    data.nextEntryId++;
+    singleEntry();
+    data.view = 'entries';
+  } // else {
+
+  // }
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  singleEntry();
-  data.view = 'entries';
+  contact.reset();
   viewSwap();
 }
 
@@ -70,12 +79,13 @@ function singleEntry() {
 
 function allEntries() {
   for (var i = 0; i < data.entries.length; i++) {
-    uList.append(entryTree(data.entries[i]));
+    // uList.append(entryTree(data.entries[i]));
   }
 }
 
 var view = document.querySelector('div[data-view="entry-form"]');
 var viewTwo = document.querySelector('div[data-view="entries"]');
+var newButt = document.querySelector('#new');
 
 function viewSwap() {
   event.preventDefault();
@@ -88,44 +98,46 @@ function viewSwap() {
   }
 }
 
+function toEntries(event) {
+  view.className = 'hidden';
+  viewTwo.className = '';
+  contact.reset();
+  img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  data.editing = null;
+  mainH.textContent = 'New Entry';
+}
+
 function backToEntry(event) {
   view.className = '';
   viewTwo.className = 'hidden';
 }
 
+var mainH = document.querySelector('#main-head');
+
 function TBD(evento) {
   // console.log(data.editing);
-  // var dirID = evento.target.getAttribute('data-entry-id');
+  var dirID = evento.target.getAttribute('data-entry-id');
   // console.log(dirID);
   if (event.target.matches('.editTarget')) {
     view.className = '';
     viewTwo.className = 'hidden';
 
-    // for (var i = 0; i < data.entries.length; i++) {
-    //  if (data.entries[i].EntryId === dirID) {
-    data.editing = 8;
-    // }
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].EntryId.toString() === dirID) {
+        data.editing = { ...data.entries[i] };
+      }
+    }
+    titleInput.value = data.editing.title;
+    picInput.value = data.editing.photoURL;
+    notesInput.value = data.editing.Notes;
+    img.setAttribute('src', data.editing.photoURL);
+    mainH.textContent = 'Update Entry';
   }
-  // console.log(data);
-  // if (data.editing === null) {
-  // for (var i = 0; i < data.entries.length; i++) {
-  //    if (data.entries[i].EntryId === dirID) {
-  //     data.editing = 8;
-  //      }
-  // }
 }
-// }
-
-// function NA() {
-// if icon clicked
-// if click matches entry id then assign that to data editing
-// var bool = data.entries[0].EntryId.matches('#entry.EntryId');
-// return data.entries[0].EntryId;
-// return bool;
-// }
 
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', allEntries);
-entryPage.addEventListener('click', backToEntry);
+newButt.addEventListener('click', backToEntry);
 uList.addEventListener('click', TBD);
+entriesPage.addEventListener('click', toEntries);
