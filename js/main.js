@@ -3,9 +3,7 @@
 var img = document.querySelector('img');
 var contact = document.querySelector('#code-form');
 var uList = document.querySelector('ul');
-// var entryPage = document.querySelector('a[href="#entryPage"]');
 var entriesPage = document.querySelector('a[href="#entries"]');
-
 var titleInput = document.querySelector('#title');
 var picInput = document.querySelector('#photo');
 var notesInput = document.querySelector('#notes');
@@ -28,9 +26,17 @@ function submit(event) {
     data.nextEntryId++;
     singleEntry();
     data.view = 'entries';
-  } // else {
+  } else {
+    data.editing.Notes = contact.elements.notes.value;
+    data.editing.photoURL = contact.elements.piclink.value;
+    data.editing.title = contact.elements.title.value;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].EntryId === data.editing.EntryId) {
+        uList.replaceWith(entryTree(data.editing));
+      }
+    }
+  }
 
-  // }
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
   contact.reset();
   viewSwap();
@@ -79,7 +85,7 @@ function singleEntry() {
 
 function allEntries() {
   for (var i = 0; i < data.entries.length; i++) {
-    // uList.append(entryTree(data.entries[i]));
+    uList.append(entryTree(data.entries[i]));
   }
 }
 
@@ -110,21 +116,21 @@ function toEntries(event) {
 function backToEntry(event) {
   view.className = '';
   viewTwo.className = 'hidden';
+  data.editing = null;
+  mainH.textContent = 'New Entry';
 }
 
 var mainH = document.querySelector('#main-head');
 
-function TBD(evento) {
-  // console.log(data.editing);
+function updateEntry(evento) {
   var dirID = evento.target.getAttribute('data-entry-id');
-  // console.log(dirID);
   if (event.target.matches('.editTarget')) {
     view.className = '';
     viewTwo.className = 'hidden';
 
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].EntryId.toString() === dirID) {
-        data.editing = { ...data.entries[i] };
+        data.editing = data.entries[i];
       }
     }
     titleInput.value = data.editing.title;
@@ -139,5 +145,5 @@ picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', allEntries);
 newButt.addEventListener('click', backToEntry);
-uList.addEventListener('click', TBD);
+uList.addEventListener('click', updateEntry);
 entriesPage.addEventListener('click', toEntries);
