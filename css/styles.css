@@ -106,3 +106,9 @@ textarea {
   font-family: "Titillium Web", sans-serif;
   font-weight: 400;
 }
+
+.right {
+  float: right;
+  font-size: larger;
+  color: rgb(86, 42, 129);
+}
