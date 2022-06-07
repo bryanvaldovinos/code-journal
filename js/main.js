@@ -121,6 +121,7 @@ function backToEntry(event) {
 }
 
 var mainH = document.querySelector('#main-head');
+// var updateView = document.querySelector('div[data-view="update"');
 
 function updateEntry(evento) {
   var dirID = evento.target.getAttribute('data-entry-id');
@@ -138,6 +139,7 @@ function updateEntry(evento) {
     notesInput.value = data.editing.Notes;
     img.setAttribute('src', data.editing.photoURL);
     mainH.textContent = 'Update Entry';
+    // updateView.className = 'container';
   }
 }
 
