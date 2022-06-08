@@ -118,10 +118,19 @@ function backToEntry(event) {
   viewTwo.className = 'hidden';
   data.editing = null;
   mainH.textContent = 'New Entry';
+  updateView.className = 'delete hidden';
+  buttonHalf.className = 'column-full';
 }
 
 var mainH = document.querySelector('#main-head');
-// var updateView = document.querySelector('div[data-view="update"');
+var updateView = document.querySelector('div[data-view="update"');
+var buttonHalf = document.querySelector('#btn-half');
+var modalShow = document.querySelector('div[class="modal hidden"]');
+var deleteModal = document.querySelector('.delete-button');
+
+function deleteEntry(e) {
+  modalShow.className = 'modal show';
+}
 
 function updateEntry(evento) {
   var dirID = evento.target.getAttribute('data-entry-id');
@@ -139,7 +148,8 @@ function updateEntry(evento) {
     notesInput.value = data.editing.Notes;
     img.setAttribute('src', data.editing.photoURL);
     mainH.textContent = 'Update Entry';
-    // updateView.className = 'container';
+    updateView.className = 'delete column-half';
+    buttonHalf.className = 'column-half';
   }
 }
 
@@ -149,3 +159,4 @@ window.addEventListener('DOMContentLoaded', allEntries);
 newButt.addEventListener('click', backToEntry);
 uList.addEventListener('click', updateEntry);
 entriesPage.addEventListener('click', toEntries);
+deleteModal.addEventListener('click', deleteEntry);

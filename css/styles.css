@@ -112,3 +112,37 @@ textarea {
   font-size: larger;
   color: rgb(86, 42, 129);
 }
+
+.delete-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(50 50 50 / 85%);
+}
+
+.modal-content {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  min-height: 25vh;
+  margin: 250px 525px;
+  padding: 0;
+  border-radius: 5px;
+}
