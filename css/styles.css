@@ -141,8 +141,35 @@ textarea {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  min-height: 25vh;
+  min-height: 20vh;
   margin: 250px 525px;
   padding: 0;
   border-radius: 5px;
+}
+
+.modal-button {
+  padding: 8px;
+  color: black;
+  background-color: #b6b6b6;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  float: left;
+  margin-right: 100px;
+}
+
+.modal-button-2 {
+  padding: 8px;
+  color: white;
+  background-color: red;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  float: right;
+}
+
+.space {
+  justify-content: space-between;
 }

@@ -32,7 +32,7 @@ function submit(event) {
     data.editing.title = contact.elements.title.value;
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].EntryId === data.editing.EntryId) {
-        uList.replaceWith(entryTree(data.editing));
+        uList.getElementsByTagName('li')[i].replaceWith(entryTree(data.editing));
       }
     }
   }
@@ -92,6 +92,7 @@ function allEntries() {
 var view = document.querySelector('div[data-view="entry-form"]');
 var viewTwo = document.querySelector('div[data-view="entries"]');
 var newButt = document.querySelector('#new');
+var cancel = document.querySelector('#cancel');
 
 function viewSwap() {
   event.preventDefault();
@@ -127,9 +128,14 @@ var updateView = document.querySelector('div[data-view="update"');
 var buttonHalf = document.querySelector('#btn-half');
 var modalShow = document.querySelector('div[class="modal hidden"]');
 var deleteModal = document.querySelector('.delete-button');
+var confirm = document.querySelector('#delete');
 
-function deleteEntry(e) {
+function showModal(e) {
   modalShow.className = 'modal show';
+}
+
+function closeModal() {
+  modalShow.className = 'modal hidden';
 }
 
 function updateEntry(evento) {
@@ -153,10 +159,26 @@ function updateEntry(evento) {
   }
 }
 
+function confirmDelete() {
+  view.className = 'hidden';
+  viewTwo.className = '';
+  modalShow.className = 'modal hidden';
+  contact.reset();
+  img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].EntryId === data.editing.EntryId) {
+      uList.getElementsByTagName('li')[i].remove();
+    }
+  }
+  data.editing = null;
+}
+
 picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', allEntries);
 newButt.addEventListener('click', backToEntry);
+cancel.addEventListener('click', closeModal);
 uList.addEventListener('click', updateEntry);
 entriesPage.addEventListener('click', toEntries);
-deleteModal.addEventListener('click', deleteEntry);
+deleteModal.addEventListener('click', showModal);
+confirm.addEventListener('click', confirmDelete);
