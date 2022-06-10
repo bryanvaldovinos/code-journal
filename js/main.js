@@ -45,7 +45,7 @@ function submit(event) {
 function confirmDelete() {
   view.className = 'hidden';
   viewTwo.className = '';
-  modalShow.className = 'modal hidden';
+  modalShow.className = 'modal hidden row center';
   contact.reset();
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
   for (var i = 0; i < data.entries.length; i++) {
@@ -139,7 +139,7 @@ function backToEntry(event) {
 var mainH = document.querySelector('#main-head');
 var updateView = document.querySelector('div[data-view="update"');
 var buttonHalf = document.querySelector('#btn-half');
-var modalShow = document.querySelector('div[class="modal hidden"]');
+var modalShow = document.querySelector('div[class="modal hidden row center"]');
 var deleteModal = document.querySelector('.delete-button');
 var confirm = document.querySelector('#delete');
 
@@ -148,7 +148,7 @@ function showModal(e) {
 }
 
 function closeModal() {
-  modalShow.className = 'modal hidden';
+  modalShow.className = 'modal hidden row center';
 }
 
 function updateEntry(evento) {
