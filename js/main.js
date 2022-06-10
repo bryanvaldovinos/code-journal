@@ -32,7 +32,7 @@ function submit(event) {
     data.editing.title = contact.elements.title.value;
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].EntryId === data.editing.EntryId) {
-        uList.getElementsByTagName('li')[i].replaceWith(entryTree(data.editing));
+        uList.querySelectorAll('li')[i].replaceWith(entryTree(data.editing));
       }
     }
   }
@@ -40,6 +40,19 @@ function submit(event) {
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
   contact.reset();
   viewSwap();
+}
+
+function confirmDelete() {
+  view.className = 'hidden';
+  viewTwo.className = '';
+  modalShow.className = 'modal hidden';
+  contact.reset();
+  img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].EntryId === data.editing.EntryId) {
+      uList.querySelectorAll('li')[i].remove();
+    }
+  }
 }
 
 function entryTree(entry) {
@@ -157,20 +170,6 @@ function updateEntry(evento) {
     updateView.className = 'delete column-half';
     buttonHalf.className = 'column-half';
   }
-}
-
-function confirmDelete() {
-  view.className = 'hidden';
-  viewTwo.className = '';
-  modalShow.className = 'modal hidden';
-  contact.reset();
-  img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  for (var i = 0; i < data.entries.length; i++) {
-    if (data.entries[i].EntryId === data.editing.EntryId) {
-      uList.getElementsByTagName('li')[i].remove();
-    }
-  }
-  data.editing = null;
 }
 
 picInput.addEventListener('input', subSrc);

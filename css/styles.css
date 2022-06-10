@@ -135,19 +135,20 @@ textarea {
 }
 
 .modal-content {
+  position: relative;
+  top: 30%;
+  left: 30%;
   background-color: white;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
   align-items: center;
   min-height: 20vh;
-  margin: 250px 525px;
-  padding: 0;
   border-radius: 5px;
+  width: 40%;
 }
 
-.modal-button {
+.cancel {
   padding: 8px;
   color: black;
   background-color: #b6b6b6;
@@ -159,7 +160,7 @@ textarea {
   margin-right: 100px;
 }
 
-.modal-button-2 {
+.confirm {
   padding: 8px;
   color: white;
   background-color: red;
@@ -170,6 +171,11 @@ textarea {
   float: right;
 }
 
-.space {
+.delete-button-space {
   justify-content: space-between;
+}
+
+.center-delete-buttons {
+  justify-content: center;
+  align-items: center;
 }
