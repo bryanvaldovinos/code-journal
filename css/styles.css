@@ -112,3 +112,72 @@ textarea {
   font-size: larger;
   color: rgb(86, 42, 129);
 }
+
+.delete-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  background-color: rgb(50 50 50 / 85%);
+}
+
+.modal-content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  top: 30%;
+  left: 40%;
+  background-color: white;
+  min-height: 15vh;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.cancel {
+  padding: 8px;
+  color: black;
+  background-color: #b6b6b6;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  float: left;
+  margin-right: 100px;
+}
+
+.confirm {
+  padding: 8px;
+  color: white;
+  background-color: red;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  float: right;
+}
+
+.delete-button-space {
+  justify-content: space-between;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.text-align {
+  text-align: center;
+}

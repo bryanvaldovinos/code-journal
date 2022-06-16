@@ -32,7 +32,7 @@ function submit(event) {
     data.editing.title = contact.elements.title.value;
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].EntryId === data.editing.EntryId) {
-        uList.replaceWith(entryTree(data.editing));
+        uList.querySelectorAll('li')[i].replaceWith(entryTree(data.editing));
       }
     }
   }
@@ -40,6 +40,19 @@ function submit(event) {
   img.setAttribute('src', 'images/placeholder-image-square.jpg');
   contact.reset();
   viewSwap();
+}
+
+function confirmDelete() {
+  view.className = 'hidden';
+  viewTwo.className = '';
+  modalShow.className = 'modal hidden row center';
+  contact.reset();
+  img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].EntryId === data.editing.EntryId) {
+      uList.querySelectorAll('li')[i].remove();
+    }
+  }
 }
 
 function entryTree(entry) {
@@ -92,6 +105,7 @@ function allEntries() {
 var view = document.querySelector('div[data-view="entry-form"]');
 var viewTwo = document.querySelector('div[data-view="entries"]');
 var newButt = document.querySelector('#new');
+var cancel = document.querySelector('#cancel');
 
 function viewSwap() {
   event.preventDefault();
@@ -118,9 +132,24 @@ function backToEntry(event) {
   viewTwo.className = 'hidden';
   data.editing = null;
   mainH.textContent = 'New Entry';
+  updateView.className = 'delete hidden';
+  buttonHalf.className = 'column-full';
 }
 
 var mainH = document.querySelector('#main-head');
+var updateView = document.querySelector('div[data-view="update"');
+var buttonHalf = document.querySelector('#btn-half');
+var modalShow = document.querySelector('div[class="modal hidden row center"]');
+var deleteModal = document.querySelector('.delete-button');
+var confirm = document.querySelector('#delete');
+
+function showModal(e) {
+  modalShow.className = 'modal show';
+}
+
+function closeModal() {
+  modalShow.className = 'modal hidden row center';
+}
 
 function updateEntry(evento) {
   var dirID = evento.target.getAttribute('data-entry-id');
@@ -138,6 +167,8 @@ function updateEntry(evento) {
     notesInput.value = data.editing.Notes;
     img.setAttribute('src', data.editing.photoURL);
     mainH.textContent = 'Update Entry';
+    updateView.className = 'delete column-half';
+    buttonHalf.className = 'column-half';
   }
 }
 
@@ -145,5 +176,8 @@ picInput.addEventListener('input', subSrc);
 contact.addEventListener('submit', submit);
 window.addEventListener('DOMContentLoaded', allEntries);
 newButt.addEventListener('click', backToEntry);
+cancel.addEventListener('click', closeModal);
 uList.addEventListener('click', updateEntry);
 entriesPage.addEventListener('click', toEntries);
+deleteModal.addEventListener('click', showModal);
+confirm.addEventListener('click', confirmDelete);
